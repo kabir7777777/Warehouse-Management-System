@@ -1,18 +1,4 @@
 """
-Madeline Berardi
-400643493
-
-Kavya Sachdeva
-400643277
-
-Alp Jashanica
-400625572
-
-Sara Bilal
-400624902
-
-Kabir Singh Dillon
-400625526
 
 Creates a warehouse system for users to purchase products and have the Qarm pack them. This includes creating an account, processing the order, and summarizing a receipt.
 """
@@ -31,12 +17,12 @@ LEGAL_SYMBOLS = set("!.@#$%^&*()_[]") # allowed set symbols. set makes sure that
 ##Sign Up
 
 def file_exists(path):
-    """Sara Bilal: Returns true or false, os.path.isfile is used to check if the file is present or not"""
+    """ Returns true or false, os.path.isfile is used to check if the file is present or not"""
     return os.path.isfile(path)
 
 
 def load_users():
-    """Sara Bilal: loads users and the hashed password"""
+    """ loads users and the hashed password"""
     users = {} # initializes empty dictionary
     if file_exists("users.csv"): #opens file in readmode
         with open("users.csv", newline="", encoding="utf-8") as f:
@@ -49,14 +35,14 @@ def load_users():
 
 
 def append_user(userid, encrypted_password):
-    """Sara Bilal: creates a file if not alredy made, every time a new account is created there is a new row of username and password added"""
+    """ creates a file if not alredy made, every time a new account is created there is a new row of username and password added"""
     with open("users.csv", "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow([userid, encrypted_password])
 
 
 def is_valid_password(password):
-    """Sara Bilal: Checks if the password is valid"""
+    """ Checks if the password is valid"""
     if len(password) < 6:
         return False
 
@@ -68,7 +54,7 @@ def is_valid_password(password):
     return has_upper and has_lower and has_digit and has_symbol
 
 def sign_up():
-    """Sara Bilal: Makes a new account, checks if the user is alredy in the system, if they arn'r it asks for a username and loops if the user is alredy taken etc"""
+    """ Makes a new account, checks if the user is alredy in the system, if they arn'r it asks for a username and loops if the user is alredy taken etc"""
     print("Sign up")
 
     users = load_users()
@@ -110,7 +96,7 @@ def sign_up():
 
 def authenticate():
 
-    """Kabir Singh Dillon: Function that handles user sign-in, checking whether a userId exists and if the correspong password entered by the user is correct. If successful the function returns the user's Id"""
+    """Function that handles user sign-in, checking whether a userId exists and if the correspong password entered by the user is correct. If successful the function returns the user's Id"""
 
     # Main authentication loop that continues until a successful login or sign-up
     while True:
@@ -149,7 +135,7 @@ def authenticate():
 ##Look Up Products
 
 def lookup_products(products):
-    """Alp Jashanica: This function takes a string and splits it up and compares it to the products.csv file if a word in the string matched it would make take the name and price as a list. It makes 2d list for all the name and prices. The parameters is a string with the names of the products. Returns the 2d list with the names(string) and prices(float).
+    """ This function takes a string and splits it up and compares it to the products.csv file if a word in the string matched it would make take the name and price as a list. It makes 2d list for all the name and prices. The parameters is a string with the names of the products. Returns the 2d list with the names(string) and prices(float).
 
 """
     filename = "products.csv"
@@ -221,7 +207,7 @@ def lookup_products(products):
 
 ##Complete Order
 def complete_order(userid, product_list):
-    """Kavya Sachdeva: This function calculates the total, applies a random discount, calculates tax and outputs the completed order in a order.csv file. It also prints a formatted reciepts and also prints the numer of order made till far."""
+    """ This function calculates the total, applies a random discount, calculates tax and outputs the completed order in a order.csv file. It also prints a formatted reciepts and also prints the numer of order made till far."""
     print("\n----------- RECEIPT ------------")
 
     # 1. Subtotal
@@ -276,7 +262,7 @@ def complete_order(userid, product_list):
 ##Customer Summary
 
 def customer_summary(userid):
-    """Madeline Berardi: This function creates a formatted summary of all orders made by a user. This includes their userid, total cost, and a list of all products they ordered and their quantities. It reads the orders.csv file for the information."""
+    """ This function creates a formatted summary of all orders made by a user. This includes their userid, total cost, and a list of all products they ordered and their quantities. It reads the orders.csv file for the information."""
     user_orders = []
     with open("orders.csv") as file:
         for line in file:
